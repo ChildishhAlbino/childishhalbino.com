@@ -1,5 +1,21 @@
 require("dotenv").config()
 
+// HANDLE NETLIFY ENV VARS FOR DRAFT CONTENT
+let options = {
+  spaceId: `jl3v3y1i6iha`,
+  accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+}
+const context = process.env.CONTEXT
+if (context && (context == "branch-deploy" || context == "deploy-preview")) {
+  let branchName = process.env.HEAD
+  switch (branchName) {
+    case "develop":
+      options.accessToken = process.env.CONTENTFUL_DRAFT_ACCESS_TOKEN
+      options.host = `preview.contentful.com`
+  }
+}
+//
+
 module.exports = {
   siteMetadata: {
     title: `ChildishhAlbino`,
@@ -13,17 +29,14 @@ module.exports = {
   plugins: [
     {
       resolve: `gatsby-source-contentful`,
-      options: {
-        spaceId: `jl3v3y1i6iha`,
-        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
-      },
+      options: options,
     },
     {
-      resolve: 'gatsby-plugin-buildtime-timezone',
+      resolve: "gatsby-plugin-buildtime-timezone",
       options: {
-        tz: 'Australia/Sydney',
-        format: 'LLLL'
-      }
+        tz: "Australia/Sydney",
+        format: "LLLL",
+      },
     },
     `gatsby-plugin-dark-mode`,
     `gatsby-plugin-sass`,
