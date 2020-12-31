@@ -6,7 +6,6 @@ import { formatDateToLocalTime } from "../../utils/date-utils"
 import "./blog-post-card.scss"
 
 const BlogPostCard = ({ post }) => {
-  console.log(post)
   const {
     title,
     description,
@@ -14,7 +13,6 @@ const BlogPostCard = ({ post }) => {
     publicationDate,
     latestEdit,
     postThumbnail,
-    keywords,
   } = post
   const pageTitle = title || slug
   return (
