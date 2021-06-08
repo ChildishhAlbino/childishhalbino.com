@@ -2,7 +2,7 @@ import React from "react"
 import { graphql } from "gatsby"
 import { Bio } from "../components/bio/bio"
 import Layout from "../components/layout/layout"
-import SEO from "../components/seo/seo"
+import Seo from "../components/Seo/Seo"
 
 class ProjectsPage extends React.Component {
     render() {
@@ -10,7 +10,7 @@ class ProjectsPage extends React.Component {
         const siteTitle = data.site.siteMetadata.title
         return (
             <Layout location={this.props.location} title={siteTitle}>
-                <SEO title="Projects" />
+                <Seo title="Projects" />
                 <h1>Projects</h1>
                 <small>Work in Progress...</small>
                 <hr />

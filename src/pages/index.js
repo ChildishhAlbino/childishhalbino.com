@@ -2,7 +2,7 @@ import React from "react"
 import { graphql } from "gatsby"
 import { Bio } from "../components/bio/bio"
 import Layout from "../components/layout/layout"
-import SEO from "../components/seo/seo"
+import Seo from "../components/Seo/Seo"
 import { BlogPostList } from "../components/blog-post-list/blog-post-list"
 
 
@@ -12,7 +12,7 @@ class IndexPage extends React.Component {
     const siteTitle = data.site.siteMetadata.title
     return (
       <Layout location={this.props.location} title={siteTitle}>
-        <SEO title="All posts" />
+        <Seo title="All posts" />
         <Bio />
         <hr />
         <BlogPostList></BlogPostList>

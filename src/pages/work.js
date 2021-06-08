@@ -1,7 +1,7 @@
 import React from "react"
 import { graphql } from "gatsby"
 import Layout from "../components/layout/layout"
-import SEO from "../components/seo/seo"
+import Seo from "../components/Seo/Seo"
 import { Bio } from "../components/bio/bio"
 import WorkCard from "../components/work-card/work-card"
 
@@ -12,7 +12,7 @@ class WorkPage extends React.Component {
     const jobs = data.allContentfulJob.edges
     return (
       <Layout location={this.props.location} title={siteTitle}>
-        <SEO title="Work" />
+        <Seo title="Work" />
         <div className="page-header">
           <div className="page-header-container">
             <h1>Work History</h1>

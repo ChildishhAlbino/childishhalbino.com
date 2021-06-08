@@ -3,8 +3,8 @@ import PropTypes from "prop-types"
 import Helmet from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
-function SEO({ description, lang, meta, title, imageUrl, path, keywords }) {
-  const { site, seoIcon } = useStaticQuery(
+function Seo({ description, lang, meta, title, imageUrl, path, keywords }) {
+  const { site, SeoIcon } = useStaticQuery(
     graphql`
       query {
         site {
@@ -15,7 +15,7 @@ function SEO({ description, lang, meta, title, imageUrl, path, keywords }) {
             siteUrl
           }
         }
-        seoIcon: contentfulAsset(title: { eq: "SEO_ICON" }) {
+        SeoIcon: contentfulAsset(title: { eq: "SEO_ICON" }) {
           contentful_id
           fluid(maxWidth: 1000, toFormat: WEBP) {
             src
@@ -24,12 +24,13 @@ function SEO({ description, lang, meta, title, imageUrl, path, keywords }) {
       }
     `
   )
+  console.log(site, SeoIcon)
   let pageUrl = site.siteMetadata.siteUrl + path
-  let seoIconURL = imageUrl
+  let SeoIconURL = imageUrl
     ? imageUrl
-    : seoIcon
-    ? `http:${seoIcon.fluid.src}`
-    : null
+    : SeoIcon
+      ? `http:${SeoIcon.fluid.src}`
+      : null
   const metaDescription = description || site.siteMetadata.description
   return (
     <Helmet
@@ -61,7 +62,7 @@ function SEO({ description, lang, meta, title, imageUrl, path, keywords }) {
         },
         {
           property: `og:image`,
-          content: seoIconURL,
+          content: SeoIconURL,
         },
         {
           property: `twitter:card`,
@@ -81,7 +82,7 @@ function SEO({ description, lang, meta, title, imageUrl, path, keywords }) {
         },
         {
           property: `twitter:image`,
-          content: seoIconURL,
+          content: SeoIconURL,
         },
         {
           property: `author`,
@@ -97,7 +98,7 @@ function SEO({ description, lang, meta, title, imageUrl, path, keywords }) {
   )
 }
 
-SEO.defaultProps = {
+Seo.defaultProps = {
   lang: `en`,
   meta: [],
   description: ``,
@@ -106,7 +107,7 @@ SEO.defaultProps = {
   keywords: [],
 }
 
-SEO.propTypes = {
+Seo.propTypes = {
   description: PropTypes.string,
   lang: PropTypes.string,
   meta: PropTypes.arrayOf(PropTypes.object),
@@ -116,4 +117,4 @@ SEO.propTypes = {
   keywords: PropTypes.arrayOf(PropTypes.string),
 }
 
-export default SEO
+export default Seo

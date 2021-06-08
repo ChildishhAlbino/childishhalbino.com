@@ -2,7 +2,7 @@ import React from "react"
 import { graphql } from "gatsby"
 import { Bio } from "../bio/bio"
 import Layout from "../layout/layout"
-import SEO from "../seo/seo"
+import Seo from "../Seo/Seo"
 
 import { MDXRenderer } from "gatsby-plugin-mdx"
 import { MDXProvider } from "@mdx-js/react"
@@ -17,7 +17,7 @@ class MdxPageTemplate extends React.Component {
     const { contentfulPage } = data
     return (
       <Layout location={this.props.location} title={siteTitle}>
-        <SEO title={contentfulPage.title} />
+        <Seo title={contentfulPage.title} />
         <MDXProvider components={Components} >
           <MDXRenderer>{contentfulPage.mdx.childMdx.body}</MDXRenderer>
         </MDXProvider>

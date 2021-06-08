@@ -2,7 +2,7 @@ import React from "react"
 import { Link, graphql } from "gatsby"
 import { Bio } from "../bio/bio"
 import Layout from "../layout/layout"
-import SEO from "../seo/seo"
+import Seo from "../Seo/Seo"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import { formatDateToLocalTime } from "../../utils/date-utils"
 import { BLOCKS } from "@contentful/rich-text-types"
@@ -23,12 +23,12 @@ class BlogPostTemplate extends React.Component {
       publicationDate,
       latestEdit,
       postThumbnail,
-      seoThumbnail,
+      SeoThumbnail,
       body: { raw, references },
       keywords,
     } = post
     let parsed = JSON.parse(raw)
-    let seoImageUrl = seoThumbnail ? `http:${seoThumbnail.fluid.src}` : null
+    let SeoImageUrl = SeoThumbnail ? `http:${SeoThumbnail.fluid.src}` : null
 
     let postDate = <p>{formatDateToLocalTime(publicationDate)}</p>
     if (latestEdit !== publicationDate) {
@@ -44,11 +44,11 @@ class BlogPostTemplate extends React.Component {
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
-        <SEO
+        <Seo
           title={title}
           description={description}
           keywords={keywords}
-          imageUrl={seoImageUrl}
+          imageUrl={SeoImageUrl}
           path={this.props.path}
         />
         <article className="blog-post-container">
@@ -140,7 +140,7 @@ export const pageQuery = graphql`
           ...GatsbyContentfulFluid
         }
       }
-      seoThumbnail: thumbnail {
+      SeoThumbnail: thumbnail {
         fluid(maxWidth: 1000, toFormat: WEBP) {
           ...GatsbyContentfulFluid
         }

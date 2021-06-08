@@ -5,6 +5,7 @@ import BlogPostCard from "../blog-post-card/blog-post-card"
 import "./blog-post-list.scss"
 
 const BlogPostList = () => {
+  console.log("TOAD WUZ HERE")
   return (
     <StaticQuery
       query={graphql`
